@@ -6,16 +6,12 @@ import Todo from './Todo'
 
 const TodoList = (props) => {
 
-    const handleClick = () => {
-        props.handleTaskCompleted();
-    }
-
     return (
         <div>
             {props.tasks.map(tasks => (
                 <Todo handleTaskMarkThrough={props.handleTaskMarkThrough} key={tasks.id} tasks={tasks}/>
             ))}
-            <button onClick={handleClick} className="clear-btn">
+            <button onClick={props.clearTask} className="clear-btn">
                 Clear Completed
             </button>
         </div>

@@ -5,12 +5,12 @@ import './components/Todo.css'
 
 const tasks = [
   {
-    task: 'Organize Garage',
+    task: 'Task 1',
     id: 1528817077286,
     completed: false
   },
   {
-    task: 'Bake Cookies',
+    task: 'Task 2',
     id: 1528817084358,
     completed: false
   }
@@ -27,13 +27,14 @@ class App extends React.Component {
   handleTaskMarkThrough = (itemId) => {
     this.setState({
       tasks: this.state.tasks.map(tasks => {
-        if(tasks.id === itemId) {
+        if( itemId === tasks.id) {
           return {
             ...tasks,
             completed: !tasks.completed
           }
         }
-        return(tasks);
+        console.log(tasks.completed)
+        return tasks;
       })
     });
   }
@@ -51,6 +52,12 @@ class App extends React.Component {
     })
   }
 
+  clearTask = (e) => {
+    e.preventDefault();
+    this.setState({
+      tasks: this.state.tasks.filter((task) => !task.completed)
+    });
+  };
 
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -59,8 +66,8 @@ class App extends React.Component {
     return (
       <div>
         <h1>Todo App!</h1>
+        <TodoList tasks={this.state.tasks} handleTaskMarkThrough={this.handleTaskMarkThrough} clearTask={this.clearTask}/>
         <TodoForm handleTaskAdd={this.handleTaskAdd}/>
-        <TodoList tasks={this.state.tasks} handleTaskMarkThrough={this.handleTaskMarkThrough}/>
       </div>
     );
   }
