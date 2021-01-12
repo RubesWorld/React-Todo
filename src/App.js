@@ -2,6 +2,8 @@ import React from 'react';
 import TodoForm from './components/TodoForm'
 import TodoList from './components/TodoList'
 import './components/Todo.css'
+import styled from 'styled-components'
+
 
 const tasks = [
   {
@@ -64,13 +66,25 @@ class App extends React.Component {
   // this component is going to take care of state, and any change handlers you need to work with your state
   render() {
     return (
-      <div>
+      <MainDiv>
         <h1>Todo App!</h1>
         <TodoList tasks={this.state.tasks} handleTaskMarkThrough={this.handleTaskMarkThrough} clearTask={this.clearTask}/>
         <TodoForm handleTaskAdd={this.handleTaskAdd}/>
-      </div>
+      </MainDiv>
     );
   }
 }
 
 export default App;
+
+const MainDiv = styled.div`
+  border: solid 1px black;
+  border: 0;
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.24);
+  padding: 1rem;
+  cursor: pointer;
+  margin: 1rem auto;
+
+
+`
